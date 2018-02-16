@@ -1,0 +1,271 @@
+// Bootstrap overrides
+//
+// Copy variables from `_variables.scss` to this file to override default values
+// without modifying source files.
+
+
+$font-color: rgba(255,255,255,0.9);
+$header-bg:#edeef0;
+$header-font-color:#738ab4;
+$header-height: 17vh;
+$root-font-size: 20px;
+$root-font-weight:400;
+$sunny: #FFE47D;
+$rainy: #849FCA;
+$cloudy: #7c97ff;
+$icon-border:#8DB2E7;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: url(../img/body_img.png);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  background-attachment: fixed;
+  text-align: center;
+
+  color: $font-color;
+  font-family: 'lato', sans-serif;
+  font-size: $root-font-size;
+  font-weight: $root-font-weight;
+  text-rendering: optimizeLegibility;
+
+
+    header {
+      .header-row {
+        height:$header-height;
+        text-align: center;
+        background-color: $header-bg;
+
+        h1 {
+          color:$header-font-color;
+          font-weight: 900;
+          font-size: 130%;
+          padding: 2%;
+        }
+
+        form {
+
+          .input-site {
+            margin-right: 20px;
+            background-color: #E0E0E2;
+            color:#6D7079;
+          }
+          .submit-go {
+            color:$header-font-color;
+            font-weight: 900;
+          }
+
+
+        }
+
+
+      }
+
+
+    }
+  section {
+    margin-top: -50px;
+
+    font-weight: 900;
+    text-transform: uppercase;
+
+    #loader {
+      width: 100px;
+      height: 100px;
+      border: 10px solid #eee;
+      border-radius: 50%;
+      border-top: 10px solid #0099ee;
+      animation: spinning 2s linear infinite;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+
+    }
+    .loaded {
+      display: none;
+
+    }
+    .loading {
+      display: block;
+    }
+
+
+    #alert-info {
+      width: 500px;
+      height: 100px;
+
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      animation:alertOut 1s ease-out forwards;
+
+    }
+    .noerror {
+      display: none;
+    }
+    .haserror {
+      display: block;
+
+
+    }
+
+
+    @keyframes alertOut{
+      from {
+        background-color: #b3d7ff;
+      }
+      to {
+        background-color: #c82333;
+      }
+    }
+
+
+    #content {
+      text-align: center;
+      //position: ralative;
+      animation: animationBottom 2s forwards;
+
+      @keyframes spinning {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes animationBottom {
+        from {
+          margin-top: 300px;
+          opacity: 0;
+        }
+        to {
+          margin-top: 50px;
+          opacity: 1;
+        }
+      }
+
+
+      .row {
+        text-align: center;
+
+
+
+        h2 {
+          padding: 2%;
+          font-weight: 900;
+
+          /*border: 1px solid #000;*/
+
+        }
+
+        .location {
+          font-size: 200%;
+          font-weight: 900;
+        }
+
+        .weather-date {
+          margin-bottom: 25px;
+          h2,h6 {
+            margin: 0;
+            padding: 0;
+          }
+        }
+        .weather-temp {
+          margin-bottom: 25px;
+
+            h1,h6 {
+              margin: 0;
+              padding: 0;
+              line-height: 1;
+            }
+
+            h1 {
+              font-size: 400%;
+              font-weight: 900;
+
+            }
+
+
+            .icon-lg {
+              font-size: 100%;
+
+            }
+
+
+
+        }
+
+        .weather-figures {
+          text-transform: lowercase;
+          margin-bottom: 25px;
+        }
+
+
+        .icon {
+          font-size: 20rem;
+          font-weight: 700;
+          animation: iconShake 2s ease-in-out infinite;
+
+        }
+
+        .icon-color-sunny {
+          color: $sunny;
+        }
+
+        .icon-color-rainy {
+          color: $rainy;
+          //-webkit-text-stroke: 3px $icon-border;
+        }
+        .icon-color-cloudy {
+          color: $cloudy;
+          //-webkit-text-stroke: 3px $icon-border;
+        }
+
+
+
+      }
+
+      #weather-forecast{
+        .next-day:hover {
+          color: black;
+        }
+
+      }
+
+
+    }
+
+    @keyframes iconShake {
+      0% {
+        transform: translateX(-10px);
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateX(10px);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-10px);
+        opacity: 0.8;
+      }
+    }
+  }
+
+
+
+
+  }
+
+
+
+
+
+

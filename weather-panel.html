@@ -1,0 +1,168 @@
+
+<div>
+    <header>
+        <div class="row justify-content-center align-items-center header-row">
+            <div class="col-xs-12 col-md-12">
+                <div class="row align-items-center">
+                    <div class="col-md-4">
+                        <h1>How's the weather?</h1>
+                    </div>
+                    <div class="col-md-6 text-left">
+                        <form ng-submit="getWeather(cityName)" class="form-header">
+                            <div class="input-group">
+                                <input id="autocomplete" type="search" placeholder="type a city name" class="form-control input-site" ng-model="cityName" >
+                                <div class="input-group-btn">
+                                    <input type="submit" class="btn btn-default submit bg-white submit-go" value="GO">
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <section>
+
+        <div ng-if="!testIsDone">
+            <!--<h1>Loading</h1>-->
+            <div id="loader" class="{{isLoaded}}"></div>
+            <div id="alert-info" class="text-lowercase {{hasError}}">
+                <p>{{alertInfo}}</p>
+            </div>
+
+        </div>
+
+
+        <div class="row justify-content-center" id="content" ng-if="testIsDone">
+
+            <div class="col-md-8 col-lg-8" >
+                <div class="row align-items-end justify-content-center" style="padding-top: 20px;">
+                    <div class="col-md-10">
+                        <h1 class="text-left text-uppercase location">{{weatherDate.location.city}}, {{weatherDate.location.country}}</h1>
+                    </div>
+                </div>
+                <div class="row align-items-start justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <div class="icon">
+                            <i class="{{weatherDate.weather.icon}}"></i>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 col-lg-6">
+                        <div class="row align-items-center justify-content-around text-left weather-date">
+                            <div class="col-8">
+                                <h6>today</h6>
+                            </div>
+                            <div class="col-8">
+                                <h2>{{date.getDay() | getWeekday }}</h2>
+                            </div>
+                            <div class="col-8">
+                                <h6 class="text-capitalize">{{date | date:'MMM dd, yyyy'}}</h6>
+                            </div>
+
+
+                        </div>
+                        <div class="row align-items-center justify-content-around text-left weather-temp">
+                            <div class="col-8">
+                                <h1 >{{weatherDate.weather.temp | tempRound }}<i class="wi wi-degrees icon-lg"></i>C</h1>
+                            </div>
+                            <div class="col-8">
+                                <h6>high {{weatherDate.weather.temp_max}}<i class="wi wi-degrees icon-lg"></i> / low {{weatherDate.weather.temp_min}}<i class="wi wi-degrees icon-lg"></i></h6>
+                            </div>
+
+                        </div>
+                        <div class="row align-items-center justify-content-around weather-figures">
+                            <div class="col-12">
+                                <div class="row align-items-center justify-content-end">
+                                    <div class="col-6">
+                                        <h6><i class="wi wi-humidity"></i> {{weatherDate.weather.humidity}} %</h6>
+                                    </div>
+                                    <div class="col-6">
+                                        <h6><i class="wi wi-barometer"></i> {{weatherDate.weather.pressure}} hpa</h6>
+                                    </div>
+                                </div>
+                                <div class="row align-items-center justify-content-end">
+                                    <div class="col-6">
+                                        <h6><i class="wi wi-strong-wind"></i> {{weatherDate.weather.wind.speed}} m/s</h6>
+                                    </div>
+
+                                    <div class="col-6">
+                                        <h6 class="text-uppercase"><i class="wi wi-wind-direction"></i> {{weatherDate.weather.wind.deg | windDirection}}</h6>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row align-items-center justify-content-around text-left weather-description">
+                            <div class="col-8">
+                                <h4 class="text-lowercase">it's <strong>{{weatherDate.weather.description}}</strong>.</h4>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4 col-lg-4 weather-forecast" style="background-color: rgba(255,255,255,0.3);">
+                <ul class="list-group">
+                    <li class="list-group-item" style="background-color: transparent; border: 0; border-bottom: 1px solid rgba(255,255,255,0.3);">
+                        <div class="row align-items-center justify-content-around text-left">
+                            <div class="col-12 text-capitalize font-weight-normal">
+                                 Next <span class="badge badge-primary badge-pill">{{weatherList.length}}</span> days</span>
+                            </div>
+                        </div>
+                    </li>
+                    <a href="#" class="list-group-item next-day" ng-repeat="weather in weatherList" ng-if="$index>=0" style=" background-color: transparent;border:0; border-bottom: 1px solid rgba(255,255,255,0.6);">
+                        <div class="row align-items-center justify-content-around text-left">
+
+                                    <div class="col-5">
+                                        <h5><strong>{{ weather.dt.getDay() | getWeekday }}</strong></h5>
+                                        <h6 class="text-capitalize font-weight-light">{{ weather.dt | date:'MMM dd, yyyy'}}</h6>
+                                    </div>
+                                    <div class="col-2">
+                                        <h1><i class="{{weather.icon}}"></i></h1>
+
+                                    </div>
+                                    <div class="col-5">
+                                        <h3><strong>{{weather.temp | tempRound }} <i class="wi wi-degrees"></i>C</strong></h3>
+                                    </div>
+
+
+                        </div>
+
+
+                    </a>
+
+
+                </ul>
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </section>
+
+
+</div>
+
+
+
+
